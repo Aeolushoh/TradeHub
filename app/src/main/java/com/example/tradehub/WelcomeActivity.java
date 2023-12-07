@@ -1,11 +1,13 @@
 package com.example.tradehub;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class WelcomeActivity extends AppCompatActivity {
@@ -33,7 +35,7 @@ public class WelcomeActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     finish();
-                    Intent intent=new Intent(WelcomeActivity.this, MainActivity.class);
+                    Intent intent=new Intent(WelcomeActivity.this,MainActivity.class);
                     startActivity(intent);
                 }
             });
@@ -71,5 +73,18 @@ public class WelcomeActivity extends AppCompatActivity {
         if (countDownTimer != null) {
             countDownTimer.cancel();
         }
+    }
+
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setMessage("您真的要退出TradeHub吗？")
+                .setNegativeButton("暂时不要", null)
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                }).show();
     }
 }

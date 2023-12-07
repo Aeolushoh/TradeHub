@@ -6,6 +6,10 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".MainActivity">
+
+
+
+
     <FrameLayout
         android:id="@+id/content"
         android:layout_above="@id/bottomNavigstionview"

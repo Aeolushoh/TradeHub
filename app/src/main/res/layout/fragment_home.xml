@@ -7,10 +7,10 @@
     android:orientation="vertical"
     tools:context=".HomeFragment">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
 
         <ScrollView
             android:id="@+id/scrollView3"
@@ -21,7 +21,9 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintVertical_bias="0.0"
+            android:background="@drawable/back1">
+
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -42,11 +44,12 @@
                         android:id="@+id/add"
                         android:layout_width="50dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="24dp"
+                        android:layout_marginEnd="44dp"
                         android:background="@drawable/baseline_add_24"
                         app:layout_constraintEnd_toEndOf="parent"
                         tools:ignore="MissingConstraints"
-                        tools:layout_editor_absoluteY="0dp">
+                        tools:layout_editor_absoluteY="7dp"
+                        android:visibility="gone">
 
                     </Button>
 
@@ -74,42 +77,43 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <EditText
-                    android:id="@+id/editTextText"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginEnd="24dp"
-                    android:background="@drawable/ww"
-                    android:drawableStart="@drawable/sear"
-                    android:drawablePadding="8dp"
-                    android:ems="10"
-                    android:hint="@string/搜索"
-                    android:inputType="text"
-                    android:padding="8dp" />
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    <EditText
+                        android:id="@+id/search_text"
+                        android:layout_width="300dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="20dp"
+                        android:background="@drawable/ww"
+                        android:drawablePadding="8dp"
+                        android:ems="10"
+                        android:inputType="text"
+                        android:padding="8dp" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:id="@+id/search"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="0dp"
+                        android:drawableStart="@drawable/sear">
 
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="40dp"
-                    android:text="@string/商品分类"
-                    android:textColor="@color/black"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
+                    </TextView>
+
+
+                </LinearLayout>
+
+
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -127,7 +131,7 @@
                             tools:layout_editor_absoluteY="1dp">
 
                             <ImageView
-                                android:id="@+id/imageView"
+                                android:id="@+id/imageView0"
                                 android:layout_width="35dp"
                                 android:layout_height="35dp"
                                 android:layout_marginLeft="10dp"
@@ -156,7 +160,7 @@
                             tools:layout_editor_absoluteY="1dp">
 
                             <ImageView
-                                android:id="@+id/imageView2"
+                                android:id="@+id/imageView1"
                                 android:layout_width="35dp"
                                 android:layout_height="35dp"
                                 android:layout_marginLeft="10dp"
@@ -185,7 +189,7 @@
                             tools:layout_editor_absoluteY="1dp">
 
                             <ImageView
-                                android:id="@+id/imageView3"
+                                android:id="@+id/imageView2"
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:layout_marginLeft="7dp"
@@ -212,7 +216,7 @@
                             tools:layout_editor_absoluteY="1dp">
 
                             <ImageView
-                                android:id="@+id/imageView4"
+                                android:id="@+id/imageView3"
                                 android:layout_width="35dp"
                                 android:layout_height="35dp"
                                 android:layout_marginLeft="10dp"
@@ -242,7 +246,7 @@
 
 
                             <ImageView
-                                android:id="@+id/imageView5"
+                                android:id="@+id/imageView4"
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:layout_marginLeft="7dp"
@@ -337,8 +341,9 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/textView19"
-                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:id="@+id/allpro"
+                        android:layout_width="20dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/查看全部"
@@ -346,14 +351,28 @@
 
                 </LinearLayout>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/view1"
+
+                <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                    android:id="@+id/swipeRefreshLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="1"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp" />
+                    android:layout_height="404dp">
+
+                    <!-- Your existing content goes here -->
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/viewproduct"
+                        android:layout_width="match_parent"
+                        android:layout_height="306dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="1"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+
+                </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+
 
             </LinearLayout>
         </ScrollView>

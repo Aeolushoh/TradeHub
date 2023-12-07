@@ -1,10 +1,13 @@
 package com.example.tradehub;
 
+import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -13,15 +16,18 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
 
 
-    private BottomNavigationView bottomNavigationView;
     private HomeFragment mHomeFragment;
     private MessageFragment mMessageFragment;
     private MineFragment mMineFragment;
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        bottomNavigationView=findViewById(R.id.bottomNavigstionview);
+
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigstionview);
         Intent intent=getIntent();
         int position=intent.getIntExtra("position",0);
         if(position==1) bottomNavigationView.setSelectedItemId(R.id.mine);
@@ -80,4 +86,21 @@ public class MainActivity extends AppCompatActivity {
             fragmentTransaction.hide(mMessageFragment);
         }
     }
-}
+
+
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setMessage("您真的要退出TradeHub吗？")
+                .setNegativeButton("暂时不要", null)
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                }).show();
+    }
+
+
+};
+
